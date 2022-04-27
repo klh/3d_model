@@ -1,0 +1,40 @@
+.parent { 
+display: grid; 
+grid-template-columns: repeat(3, 1fr); 
+grid-template-rows: repeat(2, 1fr); 
+grid-column-gap: 30px;
+grid-row-gap: 30px; 
+}
+.div1 { grid-area: 1 / 1 / 2 / 2; } 
+.div2 { grid-area: 1 / 2 / 2 / 3; } 
+.div3 { grid-area: 1 / 3 / 2 / 4; } 
+.div4 { grid-area: 2 / 1 / 3 / 2; } 
+.div5 { grid-area: 2 / 2 / 3 / 3; } 
+.div6 { grid-area: 2 / 3 / 3 / 4; } 
+
+
+.div1 ,
+.div2 ,
+.div3 ,
+.div4 ,
+.div5 ,
+.div6 { 
+	border:  2px solid #383636;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  	transition: 0.3s;
+  	background-color: #16191c;
+} 
+
+.header {
+	height: 35px;
+	widht: 100%;
+	background-color: #363434;
+	text-align: center;
+	line-height: 35px;
+	font-family: sans-serif;
+	color: #9f9b9b;
+}
+
+body {
+	background-color: #303841;
+}
