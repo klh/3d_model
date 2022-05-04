@@ -185,6 +185,11 @@ model-viewer {
 	display: none;
 }
 
+.container.expanded .menu ul li button.menu-logo{
+	text-align: center;
+	padding-top: 0.5rem;
+}
+
 .container.collapsed .menu ul li #logo_big{
 	display: none;
 }
