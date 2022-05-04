@@ -1,0 +1,9 @@
+<svg id="Icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+	<rect id="Area" width="20" height="20" fill="#fcfcfc" opacity="0"/>
+	<g id="Icon-2" data-name="Icon" transform="translate(2.5 2.5)">
+		<rect id="Rect" width="5.833" height="5.833" fill="none" stroke="rgba(255,255,255,0.87)" stroke-linecap="round" stroke-width="1.6"/>
+		<rect id="Rect-2" data-name="Rect" width="5.833" height="5.833" transform="translate(9.167)" fill="none" stroke="rgba(255,255,255,0.87)" stroke-linecap="round" stroke-width="1.6"/>
+		<rect id="Rect-3" data-name="Rect" width="5.833" height="5.833" transform="translate(9.167 9.167)" fill="none" stroke="rgba(255,255,255,0.87)" stroke-linecap="round" stroke-width="1.6"/>
+		<rect id="Rect-4" data-name="Rect" width="5.833" height="5.833" transform="translate(0 9.167)" fill="none" stroke="rgba(255,255,255,0.87)" stroke-linecap="round" stroke-width="1.6"/>
+	</g>
+</svg>
