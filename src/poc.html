@@ -3,9 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-    <link type="text/css" rel="stylesheet" href="./css/main.css" />
-    <link type="text/css" rel="stylesheet" href="./css/basic-grid.css" />
-    <script defer src="./js/ui.js"></script>
+	  <link type="text/css" rel="stylesheet" href="./css/main.css" />
+	  <link type="text/css" rel="stylesheet" href="./css/basic-grid.css" />
+	  <link type="text/css" rel="stylesheet" href="./css/basic-content.css" />
+	  <link type="text/css" rel="stylesheet" href="./css/range.css" />
+	  <link type="text/css" rel="stylesheet" href="./css/canvas.css" />
+	  <script type="module" src="./js/model-viewer.js"></script>
+	  <script type="module" src="./js/websockets.js"></script>
+	  <script type="module" src="./js/ui.js"></script>
   </head>
   <body>
     <div class="container collapsed">
@@ -126,49 +131,575 @@
         </ul>
       </div>
       <div class="content">
-        <div class="content-left">
-          <div class="content-menu">
-            <div class="content-menu-left"></div>
-            <div class="content-menu-right"></div>
-          </div>
-          <ul>
-            <li><span>Series descri…</span><span>HvilePET </span></li>
-            <li><span>Patient Name </span><span>Johnson, John… </span></li>
-            <li><span>gender</span><span>Male</span></li>
-            <li><span>Birth date </span><span>15-02-1980 </span></li>
-            <li><span>Patient ID </span><span>060290-5123 </span></li>
-            <li><span>Institution N… </span><span>Mayo</span></li>
-            <li><span>Study ID </span><span>203948</span></li>
-            <li><span>Series Date </span><span>06-03-2020 </span></li>
-            <li><span>Series Time </span><span>15.23.22 </span></li>
-            <li><span>Modality </span><span>-</span></li>
-            <li><span>Station </span><span>-</span></li>
-            <li><span>No. Of images </span><span>54</span></li>
-          </ul>
-        </div>
-        <div class="content-middle">
 
 
 
 
-			<table>
-				<tr>
-					<td>a</td>
-					<td>a</td>
-					<td>a</td>
-				</tr>
-				<tr>
-					<td>a</td>
-					<td colspan="2">a</td>
-				</tr>
-			</table>
-		</div>
-        <div class="content-right">
-          <div class="content-menu">
-            <div class="content-menu-left active">Contours</div>
-            <div class="content-menu-right inactive">Elipsoid</div>
-          </div>
-        </div>
+		  <div class="content-left">
+			  <div class="content-menu">
+				  <div class="content-menu-left"></div>
+				  <div class="content-menu-right"></div>
+			  </div>
+			  <ul>
+				  <li><span>Series descri…</span><span>HvilePET </span></li>
+				  <li><span>Patient Name </span><span>Johnson, John… </span></li>
+				  <li><span>gender</span><span>Male</span></li>
+				  <li><span>Birth date </span><span>15-02-1980 </span></li>
+				  <li><span>Patient ID </span><span>060290-5123 </span></li>
+				  <li><span>Institution N… </span><span>Mayo</span></li>
+				  <li><span>Study ID </span><span>203948</span></li>
+				  <li><span>Series Date </span><span>06-03-2020 </span></li>
+				  <li><span>Series Time </span><span>15.23.22 </span></li>
+				  <li><span>Modality </span><span>-</span></li>
+				  <li><span>Station </span><span>-</span></li>
+				  <li><span>No. Of images </span><span>54</span></li>
+			  </ul>
+		  </div>
+		  <div class="content-middle">
+			  <div class="content-item">
+				  <div class="content-item-title">
+					  <button>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="17.329" height="17.332" viewBox="0 0 17.329 17.332">
+							  <path
+									  id="Path_6668"
+									  data-name="Path 6668"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(-464.358 -233.398)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+							  <path
+									  id="Path_6669"
+									  data-name="Path 6669"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(481.687 250.73) rotate(180)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+						  </svg>
+					  </button>
+				  </div>
+				  <div class="content-item-view">
+					  <div class="content-item-view-image">
+
+						  <canvas id="verticalLongAxis" ></canvas>
+						  <canvas id="verticalLongAxisContour"></canvas>
+
+					  </div>
+					  <div class="content-item-view-ui">
+						  <div class="container-range">
+							  <div class="range">
+								  <div class="range-arrow-fwd">
+									  <svg
+											  id="Button_Arrow_Dropdown"
+											  xmlns="http://www.w3.org/2000/svg"
+											  xmlns:xlink="http://www.w3.org/1999/xlink"
+											  width="32"
+											  height="16"
+											  viewBox="0 0 32 16"
+									  >
+										  <defs>
+											  <clipPath id="clip-path">
+												  <path
+														  id="Mask"
+														  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+												  />
+											  </clipPath>
+										  </defs>
+										  <rect
+												  id="Rectangle_1408"
+												  data-name="Rectangle 1408"
+												  width="32"
+												  height="16"
+												  fill="rgba(255,255,255,0)"
+										  />
+										  <g id="mask-2" data-name="mask" transform="translate(19.334 10.055) rotate(180)">
+											  <path
+													  id="Mask-3"
+													  data-name="Mask"
+													  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+											  />
+											  <g id="mask-4" data-name="mask" clip-path="url(#clip-path)">
+												  <g id="color" transform="translate(-1.668 -2.944)">
+													  <rect id="Rectangle" width="10" height="10" fill="#e9ecef" />
+												  </g>
+											  </g>
+										  </g>
+									  </svg>
+								  </div>
+								  <input type="range" max="20" id="range-input1" class="range-form-input" orient="vertical" data-id="EVerticalLongAxisView"/>
+								  <div class="range-arrow-back">
+									  <svg
+											  id="Button_Arrow_Dropdown"
+											  xmlns="http://www.w3.org/2000/svg"
+											  xmlns:xlink="http://www.w3.org/1999/xlink"
+											  width="32"
+											  height="16"
+											  viewBox="0 0 32 16"
+									  >
+										  <defs>
+											  <clipPath id="clip-path">
+												  <path
+														  id="Mask"
+														  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+												  />
+											  </clipPath>
+										  </defs>
+										  <rect
+												  id="Rectangle_1408"
+												  data-name="Rectangle 1408"
+												  width="32"
+												  height="16"
+												  fill="rgba(255,255,255,0)"
+										  />
+										  <g id="mask-2" data-name="mask" transform="translate(19.334 10.055) rotate(180)">
+											  <path
+													  id="Mask-3"
+													  data-name="Mask"
+													  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+											  />
+											  <g id="mask-4" data-name="mask" clip-path="url(#clip-path)">
+												  <g id="color" transform="translate(-1.668 -2.944)">
+													  <rect id="Rectangle" width="10" height="10" fill="#e9ecef" />
+												  </g>
+											  </g>
+										  </g>
+									  </svg>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+				  <div class="content-item-footer">
+					  <svg xmlns="http://www.w3.org/2000/svg" width="121" height="21" viewBox="0 0 121 21">
+						  <g id="Group_488" data-name="Group 488" transform="translate(-80 -451)">
+							  <rect
+									  id="Rectangle_1123"
+									  data-name="Rectangle 1123"
+									  width="30"
+									  height="4"
+									  transform="translate(81 468)"
+									  fill="#dedede"
+							  />
+							  <rect
+									  id="Rectangle_1125"
+									  data-name="Rectangle 1125"
+									  width="30"
+									  height="4"
+									  transform="translate(141 468)"
+									  fill="#dedede"
+							  />
+							  <rect
+									  id="Rectangle_1124"
+									  data-name="Rectangle 1124"
+									  width="30"
+									  height="4"
+									  transform="translate(111 468)"
+									  fill="#4b4b4b"
+							  />
+							  <rect
+									  id="Rectangle_1126"
+									  data-name="Rectangle 1126"
+									  width="30"
+									  height="4"
+									  transform="translate(171 468)"
+									  fill="#4b4b4b"
+							  />
+						  </g>
+						  <text
+								  id="_1cm"
+								  data-name="1cm"
+								  transform="translate(1 12)"
+								  fill="#fff"
+								  stroke="rgba(0,0,0,0)"
+								  stroke-width="1"
+								  font-size="10"
+								  font-family="NotoSans-Regular, Noto Sans"
+						  >
+							  <tspan x="0" y="0">1cm</tspan>
+						  </text>
+					  </svg>
+				  </div>
+			  </div>
+			  <div class="content-item">
+				  <div class="content-item-title">
+					  <button>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="17.329" height="17.332" viewBox="0 0 17.329 17.332">
+							  <path
+									  id="Path_6668"
+									  data-name="Path 6668"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(-464.358 -233.398)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+							  <path
+									  id="Path_6669"
+									  data-name="Path 6669"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(481.687 250.73) rotate(180)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+						  </svg>
+					  </button>
+				  </div>
+				  <div class="content-item-view">
+					  <div class="content-item-view-image">
+
+						  <canvas id="horizontalLongAxis"></canvas>
+						  <canvas id="horizontalLongAxisContour"></canvas>
+
+					  </div>
+					  <div class="content-item-view-ui">
+						  <div class="container-range">
+							  <div class="range">
+								  <div class="range-arrow-fwd">
+									  <svg
+											  id="Button_Arrow_Dropdown"
+											  xmlns="http://www.w3.org/2000/svg"
+											  xmlns:xlink="http://www.w3.org/1999/xlink"
+											  width="32"
+											  height="16"
+											  viewBox="0 0 32 16"
+									  >
+										  <defs>
+											  <clipPath id="clip-path">
+												  <path
+														  id="Mask"
+														  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+												  />
+											  </clipPath>
+										  </defs>
+										  <rect
+												  id="Rectangle_1408"
+												  data-name="Rectangle 1408"
+												  width="32"
+												  height="16"
+												  fill="rgba(255,255,255,0)"
+										  />
+										  <g id="mask-2" data-name="mask" transform="translate(19.334 10.055) rotate(180)">
+											  <path
+													  id="Mask-3"
+													  data-name="Mask"
+													  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+											  />
+											  <g id="mask-4" data-name="mask" clip-path="url(#clip-path)">
+												  <g id="color" transform="translate(-1.668 -2.944)">
+													  <rect id="Rectangle" width="10" height="10" fill="#e9ecef" />
+												  </g>
+											  </g>
+										  </g>
+									  </svg>
+								  </div>
+								  <input type="range" max="20" id="range-input2" class="range-form-input" orient="vertical" data-id="EHorizontalLongAxisView" />
+								  <div class="range-arrow-back">
+									  <svg
+											  id="Button_Arrow_Dropdown"
+											  xmlns="http://www.w3.org/2000/svg"
+											  xmlns:xlink="http://www.w3.org/1999/xlink"
+											  width="32"
+											  height="16"
+											  viewBox="0 0 32 16"
+									  >
+										  <defs>
+											  <clipPath id="clip-path">
+												  <path
+														  id="Mask"
+														  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+												  />
+											  </clipPath>
+										  </defs>
+										  <rect
+												  id="Rectangle_1408"
+												  data-name="Rectangle 1408"
+												  width="32"
+												  height="16"
+												  fill="rgba(255,255,255,0)"
+										  />
+										  <g id="mask-2" data-name="mask" transform="translate(19.334 10.055) rotate(180)">
+											  <path
+													  id="Mask-3"
+													  data-name="Mask"
+													  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+											  />
+											  <g id="mask-4" data-name="mask" clip-path="url(#clip-path)">
+												  <g id="color" transform="translate(-1.668 -2.944)">
+													  <rect id="Rectangle" width="10" height="10" fill="#e9ecef" />
+												  </g>
+											  </g>
+										  </g>
+									  </svg>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+				  <div class="content-item-footer">
+					  <svg xmlns="http://www.w3.org/2000/svg" width="121" height="21" viewBox="0 0 121 21">
+						  <g id="Group_488" data-name="Group 488" transform="translate(-80 -451)">
+							  <rect
+									  id="Rectangle_1123"
+									  data-name="Rectangle 1123"
+									  width="30"
+									  height="4"
+									  transform="translate(81 468)"
+									  fill="#dedede"
+							  />
+							  <rect
+									  id="Rectangle_1125"
+									  data-name="Rectangle 1125"
+									  width="30"
+									  height="4"
+									  transform="translate(141 468)"
+									  fill="#dedede"
+							  />
+							  <rect
+									  id="Rectangle_1124"
+									  data-name="Rectangle 1124"
+									  width="30"
+									  height="4"
+									  transform="translate(111 468)"
+									  fill="#4b4b4b"
+							  />
+							  <rect
+									  id="Rectangle_1126"
+									  data-name="Rectangle 1126"
+									  width="30"
+									  height="4"
+									  transform="translate(171 468)"
+									  fill="#4b4b4b"
+							  />
+						  </g>
+						  <text
+								  id="_1cm"
+								  data-name="1cm"
+								  transform="translate(1 12)"
+								  fill="#fff"
+								  stroke="rgba(0,0,0,0)"
+								  stroke-width="1"
+								  font-size="10"
+								  font-family="NotoSans-Regular, Noto Sans"
+						  >
+							  <tspan x="0" y="0">1cm</tspan>
+						  </text>
+					  </svg>
+				  </div>
+			  </div>
+			  <div class="content-item">
+				  <div class="content-item-title">
+					  <button>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="17.329" height="17.332" viewBox="0 0 17.329 17.332">
+							  <path
+									  id="Path_6668"
+									  data-name="Path 6668"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(-464.358 -233.398)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+							  <path
+									  id="Path_6669"
+									  data-name="Path 6669"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(481.687 250.73) rotate(180)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+						  </svg>
+					  </button>
+				  </div>
+				  <div class="content-item-view">
+					  <div class="content-item-view-image">
+
+						  <canvas id="shortAxis"></canvas>
+						  <canvas id="shortAxisContour"></canvas>
+
+					  </div>
+					  <div class="content-item-view-ui">
+						  <div class="container-range">
+							  <div class="range">
+								  <div class="range-arrow-fwd">
+									  <svg
+											  id="Button_Arrow_Dropdown"
+											  xmlns="http://www.w3.org/2000/svg"
+											  xmlns:xlink="http://www.w3.org/1999/xlink"
+											  width="32"
+											  height="16"
+											  viewBox="0 0 32 16"
+									  >
+										  <defs>
+											  <clipPath id="clip-path">
+												  <path
+														  id="Mask"
+														  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+												  />
+											  </clipPath>
+										  </defs>
+										  <rect
+												  id="Rectangle_1408"
+												  data-name="Rectangle 1408"
+												  width="32"
+												  height="16"
+												  fill="rgba(255,255,255,0)"
+										  />
+										  <g id="mask-2" data-name="mask" transform="translate(19.334 10.055) rotate(180)">
+											  <path
+													  id="Mask-3"
+													  data-name="Mask"
+													  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+											  />
+											  <g id="mask-4" data-name="mask" clip-path="url(#clip-path)">
+												  <g id="color" transform="translate(-1.668 -2.944)">
+													  <rect id="Rectangle" width="10" height="10" fill="#e9ecef" />
+												  </g>
+											  </g>
+										  </g>
+									  </svg>
+								  </div>
+								  <input type="range" max="20" id="range-input3" class="range-form-input" orient="vertical" data-id="EShortAxisView" />
+								  <div class="range-arrow-back">
+									  <svg
+											  id="Button_Arrow_Dropdown"
+											  xmlns="http://www.w3.org/2000/svg"
+											  xmlns:xlink="http://www.w3.org/1999/xlink"
+											  width="32"
+											  height="16"
+											  viewBox="0 0 32 16"
+									  >
+										  <defs>
+											  <clipPath id="clip-path">
+												  <path
+														  id="Mask"
+														  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+												  />
+											  </clipPath>
+										  </defs>
+										  <rect
+												  id="Rectangle_1408"
+												  data-name="Rectangle 1408"
+												  width="32"
+												  height="16"
+												  fill="rgba(255,255,255,0)"
+										  />
+										  <g id="mask-2" data-name="mask" transform="translate(19.334 10.055) rotate(180)">
+											  <path
+													  id="Mask-3"
+													  data-name="Mask"
+													  d="M6.532,3.311,3.332,0,.132,3.311a.472.472,0,1,0,.681.656L3.332,1.358,5.854,3.967a.472.472,0,1,0,.681-.656Z"
+											  />
+											  <g id="mask-4" data-name="mask" clip-path="url(#clip-path)">
+												  <g id="color" transform="translate(-1.668 -2.944)">
+													  <rect id="Rectangle" width="10" height="10" fill="#e9ecef" />
+												  </g>
+											  </g>
+										  </g>
+									  </svg>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+				  <div class="content-item-footer">
+					  <svg xmlns="http://www.w3.org/2000/svg" width="121" height="21" viewBox="0 0 121 21">
+						  <g id="Group_488" data-name="Group 488" transform="translate(-80 -451)">
+							  <rect
+									  id="Rectangle_1123"
+									  data-name="Rectangle 1123"
+									  width="30"
+									  height="4"
+									  transform="translate(81 468)"
+									  fill="#dedede"
+							  />
+							  <rect
+									  id="Rectangle_1125"
+									  data-name="Rectangle 1125"
+									  width="30"
+									  height="4"
+									  transform="translate(141 468)"
+									  fill="#dedede"
+							  />
+							  <rect
+									  id="Rectangle_1124"
+									  data-name="Rectangle 1124"
+									  width="30"
+									  height="4"
+									  transform="translate(111 468)"
+									  fill="#4b4b4b"
+							  />
+							  <rect
+									  id="Rectangle_1126"
+									  data-name="Rectangle 1126"
+									  width="30"
+									  height="4"
+									  transform="translate(171 468)"
+									  fill="#4b4b4b"
+							  />
+						  </g>
+						  <text
+								  id="_1cm"
+								  data-name="1cm"
+								  transform="translate(1 12)"
+								  fill="#fff"
+								  stroke="rgba(0,0,0,0)"
+								  stroke-width="1"
+								  font-size="10"
+								  font-family="NotoSans-Regular, Noto Sans"
+						  >
+							  <tspan x="0" y="0">1cm</tspan>
+						  </text>
+					  </svg>
+				  </div>
+			  </div>
+			  <div class="content-item">
+				  <div class="content-item-title">
+					  <button>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="17.329" height="17.332" viewBox="0 0 17.329 17.332">
+							  <path
+									  id="Path_6668"
+									  data-name="Path 6668"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(-464.358 -233.398)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+							  <path
+									  id="Path_6669"
+									  data-name="Path 6669"
+									  d="M481.676,234.009a.658.658,0,0,0-.654-.611h-6a.666.666,0,0,0,0,1.331h4.395l-3.865,3.865a.666.666,0,0,0,0,.941.666.666,0,0,0,.94,0l3.864-3.865v4.393a.666.666,0,1,0,1.331,0v-6C481.687,234.044,481.677,234.028,481.676,234.009Z"
+									  transform="translate(481.687 250.73) rotate(180)"
+									  fill="rgba(255,255,255,0.87)"
+							  />
+						  </svg>
+					  </button>
+				  </div>
+				  <div class="content-item-view model">
+					  <model-viewer id="model-viewer" bounds="tight" enable-pan src="js/model/model3D.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="2" auto-rotate>
+						  <button class="Hotspot" slot="hotspot-1" data-position="-51.51187193179864m 30.037540330387948m 56.15797553950146m" data-normal="0.5388111849011611m -0.7673438210647284m 0.3476578307750149m" data-visibility-attribute="visible">
+							  <div class="HotspotAnnotation">something</div>
+						  </button>
+						  <button class="Hotspot" slot="hotspot-2" data-position="-43.729453080381184m 23.190050732755992m 55.970514470474924m" data-normal="0.082701169951576m 0.9077618933182798m 0.4112527951611424m" data-visibility-attribute="visible">
+							  <div class="HotspotAnnotation">some other thing</div>
+						  </button>
+						  <button class="Hotspot" slot="hotspot-3" data-position="-55.515652718377225m 27.3093819432982m 58.870480055578334m" data-normal="0.9864719378209604m -0.014935648806491036m -0.16324840668897314m" data-visibility-attribute="visible">
+							  <div class="HotspotAnnotation">a 3rd thing</div>
+						  </button>
+					  </model-viewer>
+				  </div>
+			  </div>
+
+			  <div class="content-item content-item-wide">
+				  <div class="content-item-view">
+					  <div class="content-item-view-image content-item-view-image-wide">
+						  <img width="100%" height="100%" src="asssets/dummyimage_polar.png" />
+					  </div>
+				  </div>
+				  <div class="content-item-footer"></div>
+			  </div>
+		  </div>
+		  <div class="content-right">
+			  <div class="content-menu">
+				  <div class="content-menu-left active">Contours</div>
+				  <div class="content-menu-right inactive">Elipsoid</div>
+			  </div>
+		  </div>
+
+
+
+
       </div>
       <div class="footer">
         <ul>

@@ -1,0 +1,85 @@
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	cursor: pointer;
+	width: 0.2rem;
+	height: 100%;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+	outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #cfcece;
+	border-radius: 0;
+	width: 0.2rem;
+	height: 100%;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none; /* Override default look */
+	appearance: none;
+	margin-right: -6px; /* Centers thumb on the track */
+	background-color: #fafafa;
+	border-radius: 0.5rem;
+	height: 0.75rem;
+	width: 0.75rem;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+	outline: 3px solid #fafafa;
+	outline-offset: 0.125rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+	background-color: #cfcece;
+	border-radius: 0;
+	height: 100%;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+	background-color: #fafafa;
+	border: none; /*Removes extra border that FF applies*/
+	border-radius: 0.5rem;
+	height: 0.5rem;
+	width: 0.5rem;
+}
+
+input[type="range"]:focus::-moz-range-thumb{
+	outline: 3px solid #fafafa;
+	outline-offset: 0.125rem;
+}
+
+.range .range-arrow-fwd svg{
+	margin-top: 3px;
+	transform: rotate(180deg);
+}
+
+.range .range-arrow-back svg{
+	margin-top: 3px;
+}
+
+.range,.container-range {
+	height: 358px;
+	margin-left: 2px;
+	width: 33px;
+	text-align: center;
+}
+
+.container-range .range-form-input{
+	writing-mode: bt-lr; /* IE */
+	-webkit-appearance: slider-vertical; /* Chromium */
+	}
+

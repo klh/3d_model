@@ -1,0 +1,8 @@
+.content-item-view-image canvas {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+	height: 400px;
+	width: 400px;
+}
