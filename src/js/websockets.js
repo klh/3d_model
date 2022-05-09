@@ -110,7 +110,7 @@ window.addEventListener("load", event => {
         updateImages(data)
       } else if (data.commandId == "mouse_event") {
         updateContours(data)
-      } else if (data.commandId == "mouse_wheel_event") {
+      } else if (data.commandId == "mouse_wheel_event" || data.commandId == "range_slider_event") {
         updateImages(data)
         updateContours(data)
       } else if (data.commandId == "update3DModel") {
@@ -567,6 +567,14 @@ window.addEventListener("load", event => {
     })
   })
 
+	const contentItems = document.querySelectorAll("div.content-item:not(.content-item-wide)")
+	contentItems.forEach(function (contentItem) {
+		contentItem.addEventListener("wheel", function (event) {
+			const oldValue = contentItem.querySelector("input").value || 5;
+			const newValue =  isScrollDown(e) ? newValue - 1 : newValue + 1;
+			contentItem.querySelector("input").value = newValue;
+		})
+	})
   const modelViewer = document.querySelector("div.content-item-view.model #model-viewer")
   const update3DModel = async data => {
     modelViewer.setAttribute("src", "data:model/gltf+json;base64," + data.imageContents)
