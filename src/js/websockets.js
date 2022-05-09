@@ -553,26 +553,33 @@ window.addEventListener("load", event => {
 			);
 			*/
 
+
+	const emitSlideEvent = (event, value) => {
+		const targetElemId = event.target.getAttribute("data-id") || undefined
+		if (targetElemId) {
+			var e1 = new Object()
+			e1.command = "range_slider_event"
+			e1.elementId = targetElemId
+			e1.selectedSlice = value ? value : event.target.value
+			sendEvent(e1, true)
+		}
+	}
+
   const contentItemInputs = document.querySelectorAll("div.content-item input")
   contentItemInputs.forEach(function (inputItem) {
     inputItem.addEventListener("change", function (event) {
-      const targetElemId = event.target.getAttribute("data-id") || undefined
-      if (targetElemId) {
-        var e1 = new Object()
-        e1.command = "range_slider_event"
-        e1.elementId = targetElemId
-        e1.selectedSlice = event.target.value
-        sendEvent(e1, true)
-      }
+		emitSlideEvent(event)
     })
   })
 
 	const contentItems = document.querySelectorAll("div.content-item:not(.content-item-wide)")
 	contentItems.forEach(function (contentItem) {
 		contentItem.addEventListener("wheel", function (event) {
-			const oldValue = contentItem.querySelector("input").value || 5;
-			const newValue =  isScrollDown(e) ? newValue - 1 : newValue + 1;
+			const inputItem =contentItem.querySelector("input")
+			const oldValue = inputItem.value;
+			const newValue =  isScrollDown(event) ? oldValue - 1 : oldValue + 1;
 			contentItem.querySelector("input").value = newValue;
+			inputItem.dispatchEvent(new Event('change'));
 		})
 	})
   const modelViewer = document.querySelector("div.content-item-view.model #model-viewer")
